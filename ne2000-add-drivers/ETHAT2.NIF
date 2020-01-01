@@ -1,0 +1,5 @@
+Model = NSC AT/LANTIC NDIS 2.01 Driver
+Path = ETHERNET\ATLANTIC
+DeviceDriver = ETHAT2.DOS
+DeviceName = ETHAT20$
+Type = NDIS

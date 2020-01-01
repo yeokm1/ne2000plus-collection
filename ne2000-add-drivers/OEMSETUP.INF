@@ -1,0 +1,16 @@
+[disks]
+Y = \mslanman.dos\drivers\ethernet\atlantic\,"National Semiconductor InfoMover NE2000plus NDIS Driver",disky
+
+[netcard]
+ms$ethat2="National Semiconductor InfoMover NE2000plus",2000,ndis,ethernet,real,ms$ethat2,ms$ethat2-nif
+
+[ms$ethat2]
+devdir=Y:ethat2.dos
+device=ethat2.dos,@devdir\ethat2.dos
+
+
+[ms$ethat2-nif]
+drivername=ETHAT20$
+irq=INTERRUPT,,text,"2,3,4,5,10,11,12,15",3
+io=IOBASE,,text,"0x240,0x280,0x2c0,0x300,0x320,0x340,0x360",0x300
+

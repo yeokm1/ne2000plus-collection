@@ -1,0 +1,91 @@
+
+National Semiconductor Corp's AT/LANTIC PC/TCP Packet Driver                                                
+------------------------------------------------------------                                                                               
+                                                                                
+ NOTE: Before installing the packet driver, please make a note of the
+       configuration of your NE2000PLUS adapter. Run the PLUSDIAG Utility to 
+       obtain the following information:
+
+                A. Adapter Architecture : Programmed I/O or Shared Memory
+                B. Port Address
+                C. Interrupt setting
+
+ The AT/LANTIC PC/TCP packet driver, ATDRIVE.EXE, is for use with FTP 
+ Software's TCP Ethernet communication package.  It complies to FTP Softwares 
+ packet driver specifications, rev 1.09.                                               
+                                                                                
+                                                                                
+ COMMAND LINE OPTIONS:                                                          
+                                                                                
+ The driver makes use of the AT/LANTIC's configuration registers to read        
+ many of the driver options directly from the hardware. The option -n is used
+ for non AT/LANTIC based cards (such as Novell's NE2000) or an AT/LANTIC card 
+ configured to be NE2000 compatible.                                             
+                                                                                
+         -i      Sets the packet driver's interrupt number.  These              
+                 range from 0x60 to 0x80 as stated in the packet                
+                 driver specifications.  The default is 0x60.                   
+                                                                                
+         -b      Sets I/O base address for card. The default is I/O port 0x300. 
+                                                                                
+         -q      Sets IRQ line to be used by card. The default is IRQ 0x3.
+                 
+         -m      Sets the Memory Segment for Shared Memory Mode. The default is          
+                 Shared Memory Address 0xD000.
+                                                                                
+         -n      Force the driver to assume an NE2000 compatible card. The          
+                 driver will not try to read the configuration registers and 
+                 configuration will come solely from the command line. If 
+                 options -b and -q are not specified, the driver will use the
+                 default settings.
+
+         -k      This option is used to remove the driver from memory.
+
+         -h      Used to display the help screen which displays the available
+                 options.
+
+         -8      When in NE2000 compatible mode, this option will force the
+                 driver to use 8-bit transfers for use in older XT style
+                 slots.
+
+Note:   When entering command line options for -b and -q, remember to enter a
+        space then the value for the I/O port or IRQ. For Example:
+
+                ATDRIVE -b 0x280 -q 0x15
+                 
+                                                                                
+ OTHER FEATURES:                                                                
+                                                                                
+ The driver also has the capability of working in either I/O port or            
+ shared memory mode.  The mode is read from the configuration registers         
+ at startup and the driver switches modes automatically.                        
+                                                                                
+ The Driver will read the interrupt from the configuration registers            
+ when in AT/LANTIC mode and configure itself accordingly (assuming              
+ NE2000+ mapping scheme)                                                        
+                                                                                
+ NOTE:                                                                          
+ Rev 1.2:                                                                       
+   Packet driver works with Windows 3.x in I/O port mode.  Still problem
+   in shared memory mode.  Cable sensing and automatic IRQ detection removed.     
+                                                                                
+ Rev 1.3:                                                                       
+   Driver now uses the NIC's Send Packet command for I/O port transfers         
+                                                                                
+ Rev 1.5:                                                                       
+   Fixed bug with Windows for Workgroups in shared memory mode.  Added          
+   selectable RAM region for shared memory mode.
+
+ Rev 1.6:
+   Updated transfer routines.
+
+ Rev 1.7:
+   Added support for 8-bit transfers. In AT/LANTIC mode, this is detected
+   automatically; setting the -8 option will be ignored. When in NE2000 mode,
+   the user must set the -8 option in order to work in 8-bit slot.
+                                                                                
+ See the documentation available from FTP Software Inc. for their PC/TCP        
+ product for more detailed information.                                         
+                                                                                
+
+

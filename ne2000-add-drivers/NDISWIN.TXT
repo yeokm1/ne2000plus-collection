@@ -1,0 +1,257 @@
+
+ NDIS DEVICE DRIVER INSTALLATION                                                
+ -------------------------------                                                                               
+                                                                                
+ NOTE: Before installing the NDIS drivers, please make a note of the
+       configuration of your NE2000Plus adapter. Run the PLUSDIAG Utility to 
+       obtain the following information:
+
+                A. Adapter Architecture : Programmed I/O or Shared Memory
+                B. Port Address
+                C. Interrupt setting
+
+
+ NOTE: The NDIS Drivers supports only 286 or higher machines.
+
+ Windows for Workgroups                                                         
+ ----------------------                                                         
+                                                                                
+ To install the driver during installation of the Windows for Workgroups        
+ Operating system or when upgrading to Windows for Workgroups from              
+ Windows, use the follow instructions:
+
+
+    1. Follow the procedure outlined in the Microsoft Windows For
+       Workgroups Manual for starting Setup.
+
+    2. When Setup prompts you to Select New Network Adapter, choose
+       "Unlisted or updated Network Adapter" and press ENTER or click
+       OK.
+
+    3. Setup will prompt you to insert the diskette which contains the 
+       NDIS driver for the new adapter. Insert the NE2000Plus Additional 
+       Drivers diskette and press ENTER or Click OK.
+
+    4. Setup will display the network adapter driver to be installed, 
+       National Semiconductor InfoMover NE2000Plus. Press ENTER or Click OK.
+       (When prompted for which disk drive contains your InfoMover Diskette,
+       enter the drive designator without the backslash. For Example, enter
+       A: instead of A:\.)
+
+    5. When prompted for the disk containing the new PROTMAN.DOS, insert 
+       your Windows For Workgroups Disk #8 into drive A and press ENTER 
+       or Click OK.
+
+    6. Setup will then prompt you to insert the disk with the updated or
+       vendor-provided ETHAT2.DOS driver. Place the NE2000Plus Additional
+       Drivers Disk into drive A and press ENTER or click OK.
+
+    7. Insert the Windows For Workgroups Disk #8 into drive A and press 
+       ENTER or click OK.
+
+    8. Setup now prompts you for the NE2000Plus adapter configuration. If the 
+       adapter is configured for the default settings (I/O Mode, 300h, 3)
+       press ENTER or click OK. If the adapter is not using the default
+       settings, change each option shown to reflect the settings for 
+       your adapter.
+
+       NOTE: When using Shared Memory Mode, you must configure the Memory
+             manager you are using to exclude the 16k block used by the
+             NE2000Plus adapter. For example, if you used the default Shared
+             Memory Address, you must exclude D000-D3FF. The parameter
+             EMMExclude=D000-D3FF should be added to the SYSTEM.INI in the
+             [386Enh] section. The user must manually edit the PROTOCOL.INI 
+             located in the Windows directory and add the 
+             RAMADDRESS= statement. See the NDIS Driver Configuration section 
+             for more details.
+               
+    9. The NE2000Plus installation is complete. Follow the instructions 
+       displayed by Setup to complete your Windows For Workgroups 
+       installation.
+
+
+ To install the driver once the operating system is already installed:          
+ --------------------------------------------------------------------                                                                                
+         
+    1. Choose "Network" under the Control Panel.
+   
+    2. If you have a network installed other than Windows For Workgroups, 
+       i.e. Novell Netware, LAN Manager, etc., you must remove the network 
+       option first before Windows will allow you to remove the driver. 
+       Choose "NETWORKS" from the Network Settings screen and remove the 
+       network. 
+        
+    3. Return to the Network Settings screen and select "ADAPTERS". When
+       the next screen appears, select "REMOVE" to remove the currently
+       installed driver.
+
+    4. After the driver has been removed, select "ADD" to install a new 
+       driver.
+
+    5. When Setup prompts you to select a new network adapter, choose
+       "Unlisted or updated Network Adapter" and press ENTER or click
+        OK.
+
+    6. Setup will prompt you to insert the diskette which contains the 
+       NDIS driver for the new adapter. Insert the NE2000Plus Additional
+       Drivers diskette into drive A and press ENTER or Click OK.
+
+    7. Setup will display the network adapter to be installed, National
+       Semiconductor NE2000Plus. Press ENTER or Click OK.
+
+    8. Setup now prompts you for the NE2000Plus adapter configuration. If the 
+       adapter is configured for the default settings (I/O Mode, 300h, 3)
+       press ENTER or click OK. If the adapter is not using the default
+       settings, change each option shown to reflect the settings for 
+       your adapter.
+
+       NOTE: When using Shared Memory Mode, you must configure the Memory
+             manager you are using to exclude the 16k block used by the
+             NE2000Plus adapter. For example, if you used the default Shared
+             Memory Address, you must exclude D000-D3FF. The user must 
+             manually edit the PROTOCOL.INI located in the Windows 
+             directory and add the RAMADDRESS= statement. See the NDIS
+             Device Driver Configuration section for more details.
+
+   9. Choose "CLOSE" to save the new configuration.
+
+  10. Choose "NETWORKS" and re-enable the network you are using.
+
+  11. When asked if you want to install new network drivers to replace
+      the ones currently installed, select "NO" and press ENTER or 
+      click OK.
+
+  12. Press ENTER or click OK.
+
+  13. Press ENTER or click OK to close the Network Settings screen.
+
+  14. Choose "RESTART COMPUTER" to allow Windows to save your information
+      before rebooting the system. A system reboot is needed to allow the
+      new drivers to load.
+
+  15. Installation complete.
+
+
+-----------------------------------------------------------------------------                                                                                
+
+
+ NDIS DEVICE DRIVER CONFIGURATION                                             
+ --------------------------------                                                                              
+   
+   The I/O base address and interrupt level can be configured on the LAN 
+   Adapter for Ethernet using the PLUSDIAG.EXE program supplied on the Driver
+   diskette. The NDIS device driver must be configured to match the adapter's 
+   configuration.  The NDIS device driver can be configured manually by 
+   editing the PROTOCOL.INI file. A detailed description of the configurable                
+   parameters follows:                                                          
+                                                                                
+                                                                                
+   IOBASE = This parameter specifies the adapter I/O Base address that will     
+            be used by the device driver to access the adapter registers.       
+            The value entered must be one of 240h, 280h, 2C0h, 300h, 320h, 340h       
+            or 360h.  The default is 300.                                        
+                                                                                
+            EXAMPLE:  IOBASE = 0x300                                              
+                                                                                
+   INTERRUPT = This parameter specifies the interrupt level used for            
+               notifications between the workstation and the network            
+               adapter card. Ensure that no conflicts exist between             
+               the various system components in their use of interrupts.        
+               The value entered must be one of 2, 3, 4, 5, 10, 11, 12, or 15.      
+               The default value is 3.                                          
+                                                                                
+               EXAMPLE:  INTERRUPT = 3                                          
+                                                                                
+   RAMADDRESS = This parameter specifies the physical location of the           
+                adapter in the memory of the computer. The specified            
+                location must not conflict with that of any other adapter       
+                installed in the workstation or with an address that is         
+                used by a memory manager.  The value entered must be a         
+                hexadecimal number between C0000 and D0000 and must be a
+                multiple of 4000. The default address is D0000.       
+                                                                                
+                EXAMPLE:  RAMADDRESS = D0000                                    
+                                                                                
+                                                                                
+      Note: The NDIS device driver anticipates the mode of the adapter, 
+            either programmed I/O or shared memory, by the presence of the 
+            RAMADDRESS= statement in PROTOCOL.INI.  If the RAMADDRESS= 
+            statement is specified, it is assumed that the adapter is in 
+            shared memory mode.  If the RAMADDRESS= statement is not specified, 
+            it is assumed that the adapter is in programmed I/O mode. If the 
+            NDIS device driver is configured for the wrong adapter mode, an 
+            error message will be displayed during system initialization.                                                       
+                                                                                
+                                                                                
+                                                                                
+   The NDIS device driver section of PROTOCOL.INI can be created manually.
+   An example of a PROTOCOL.INI section for the NDIS device driver follows.                                                  
+                                                                                
+                                                                                
+                      [ETHAT2_NIF]                                                  
+                      
+                        Drivername = ETHAT20$                                   
+                                                                                
+                        IOBase = 0X300                                          
+                                                                                
+                        Interrupt = 2                                           
+                                                                                
+                        RAMAddress = 0XC0000                                    
+                                                                                
+                                                                                
+                                                                                
+   Finally, the desired protocol driver(s) must be "bound" to the NDIS          
+   device driver by manually editing the BINDINGS= statement of those           
+   protocol drivers.  An example follows:                                       
+                                                                                
+                                                                                
+                      [PROTOCOL_DRIVER_ABC]                                     
+                                                                                
+                        Bindings = ETHAT2                                       
+                                                                                
+                                                                                
+                                                                                
+ NDIS DEVICE DRIVER SUPPORT FOR TWO ADAPTERS                                  
+ -------------------------------------------
+                                                                                
+   When two NE2000Plus Adapters are installed in the same system, there           
+   must be two DEVICE= statements in CONFIG.SYS and two NDIS device driver          
+   sections in PROTOCOL.INI.  An example follows:                               
+                                                                                
+                                                                                
+       CONFIG.SYS:    DEVICE=C:\..path..\ETHAT2.OS2                             
+                      DEVICE=C:\..path..\ETHAT2.OS2                             
+                                                                                
+                                                                                
+                                                                                
+       PROTOCOL.INI:  [ETHAT2_NIF]                                                  
+                                                                                
+                        Drivername = ETHAT20$                                   
+                                                                            
+                        IOBase = 0X300                                          
+                                                                                
+                        Interrupt = 3                                           
+                                                                                
+                        RAMAddress = 0XC0000                                    
+                                                                                
+                                                                                
+                                                                                
+                      [ETHAT2_2]                                               
+                                                                                
+                        Drivername = ETHAT21$                                   
+                                                                                
+                        IOBase = 0X320                                          
+                                                                                
+                        Interrupt = 4                                           
+                                                                                
+                                                                                
+                      [PROTOCOL_DRIVER_ABC]                                     
+                                                                                
+                        Bindings = IBMENI_MOD, ... , IBMENI2_MOD                
+                                                                                
+                                                                                
+   Note, in the second NDIS device driver section of PROTOCOL.INI above,        
+   the LAN Adapter for Ethernet is in programmed I/O mode since the             
+   RAMADDRESS= statement is absent.                                             
+                                                                                
+

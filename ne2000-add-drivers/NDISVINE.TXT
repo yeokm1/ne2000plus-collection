@@ -1,0 +1,68 @@
+ NDIS DEVICE DRIVER INSTALLATION                                                
+ -------------------------------                                                                               
+                                                                                
+ NOTE: Before installing the NDIS drivers, please make a note of the
+       configuration of your NE2000PLUS adapter. Run the PLUSDIAG Utility to 
+       obtain the following information:
+        
+        A. Adapter Architecture : Programmed I/O or Shared Memory
+        B. Port Address
+        C. Interrupt setting
+
+ NOTE: The NDIS Drivers only support 286 or higher machines.
+
+ Banyan VINES                                                                   
+ ------------                                                                               
+ 
+  Installation Instructions:                                                    
+    1) Create a subdirectory called VINES.
+    2) Change to the VINES subdirectory.
+    3) Place the VINES(R) LAN S/W (DOS) NO:INSTALL Diskette into drive
+       A or B. 
+    4) Type: COPY drive:*.* and press ENTER. 
+        drive = The floppy drive which contains the VINES Diskette, A or B.
+    5) Place the VINES(R) LAN S/W (DOS) NO: 2 OF 2 Diskette into drive
+       A or B.
+    6) Type: Copy drive:\NDIS\*.* and press ENTER.
+        drive = The floppy drive which contains the VINES Diskette, A or B.
+    7) Place the NSC Additional Drivers Diskette into drive A or B.        
+    8) Type: COPY drive:\MSLANMAN.DOS\DRIVERS\ETHERNET\ATLANTIC\*.* and
+       press ENTER. This will copy the ETHAT2.DOS NDIS and PROTOCOL.INI 
+       files to your VINES subdirectory.
+    9) Run Banyan's PCCONFIG.EXE program and configure the Banyan software 
+       to talk with the NDIS driver being used.                            
+            -Select option 1 in PCCONFIG.
+            -Page down the list and select NDIS ETHERNET.                   
+            -Set the proper interrupt value. This value should correspond  
+             with the interrupt that the NIC was configured to.            
+            -Type ETHAT2 as the section header name of the NDIS driver.      
+            -Press F10 to save the configuration. Press ESC to return to
+             the main menu.
+            -Select option 2, LOGIN ENVIRONMENT SETTINGS.
+            -Select option 1, SELECT DEFAULT COMMUNICATIONS DRIVER.
+            -Page down the list and select NDIS ETHERNET.
+            -Press ESC to return to the main menu.     
+            -Press F10 to save your configuration and exit.
+    10) Edit the PROTOCOL.INI and add the header name as shown below.                 
+    11) Edit the CONFIG.SYS and add the lines listed below.
+    12) Reboot the machine.                                                 
+    13) Change to the VINES subdirectory and run the BAN.EXE command. Be sure      
+        you are attached to the same network as a VINES server.            
+    14) The Banyan login prompt should come up signifying a successful      
+        connection has been established.                                    
+                                                                                
+     +++++++ CONFIG.SYS +++++++ (Only network related files are shown)              
+      DEVICE=C:\VINES\protman.dos /i:C:\VINES                                      
+      DEVICE=C:\VINES\ethat2.dos                                                   
+                                                                                
+     +++++++ PROTOCOL.INI +++++++                                                   
+      [ETHAT2]                                                                       
+        DriverName=ETHAT20$
+        IOBASE = 0x300
+        INTERRUPT = 3
+        ;   RAMADDRESS = 0xD0000
+        ; RAM address is only used in shared memory mode.
+        ; If the RAM address is included the driver will assume shared memory mode.
+        ; The RAM address is entered as the physical address
+        ; e.g. 0xd0000 is equivalent to 0xd000:0000 in segment:offset format
+

@@ -1,0 +1,6 @@
+Model = National Semiconductor InfoMover NE2000Plus
+Path = ETHERNET\ATLANTIC
+DeviceDriver = ETHAT2.OS2
+DeviceName = ETHAT20$
+Type = NDIS
+

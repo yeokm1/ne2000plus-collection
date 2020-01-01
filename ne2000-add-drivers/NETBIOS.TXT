@@ -1,0 +1,62 @@
+
+ NETBIOS for the National Semiconductor Corporation Ethernet Adapters                                              
+ --------------------------------------------------------------------                                                                               
+                                                                                
+ NOTE: Before installing the NETBIOS driver, please make a note of the
+       configuration of your NE2000PLUS adapter. Run the PLUSDIAG Utility to 
+       obtain the following information:
+
+                A. Adapter Architecture : Programmed I/O or Shared Memory
+                B. Port Address
+                C. Interrupt setting
+
+ NOTE: This driver works only in Programmed I/O Mode. DO NOT configure
+       the adapter for Shared Memory Mode.
+
+
+INSTALLATION:
+------------
+
+To Install the NETBIOS using the accompanying INSTALL.BAT:  
+  Change drives to the appropriate drive containing this diskette.   This
+    may be either A: or B:. Then change the directories to the \NETBIOS
+    directory.
+  At the DOS prompt, type "install d" and press <return> where d is the 
+    destination drive.  For example, to install from drive B: to drive C:, 
+    type "install c" and press return.  This will copy the NETBIOS.EXE file
+    to the root directory of drive C:.
+
+To Install the NETBIOS without using the accompanying INSTALL.BAT:  
+  Change drives to the drive from which the NETBIOS will be executed.
+  Using the DOS COPY command, copy NETBIOS.EXE from the diskette to the
+    root directory on drive C:.  For example, if the diskette is in drive A: 
+    and NETBIOS.EXE will be executed from drive C:, you would perform the 
+    following steps:
+                     c: <return>
+                     copy a:\netbios\netbios.exe c:\netbios.exe <return>
+
+COMPATIBILITY:
+-------------
+
+This NETBIOS will work on the NATIONAL SEMICONDUCTOR's Ethernet Adapters.  
+  NETBIOSes from different manufacturers may not be compatible with this 
+  NETBIOS.  The NETBIOS provided by National Semiconductor is compatible
+  with NETBIOSes provided by Performance Technology, Inc. In addition, 
+  interoperable NETBIOSes for both XENIX and OS/2 are available for 
+  NATIONAL SEMICONDUCTOR's Ethernet Adapter.
+
+  For more information regarding other NETBIOSes, contact Performance 
+  Technology at (512)349-2000.
+  
+OPTIONS:
+-------
+
+Usage:      NETBIOS <option> ...
+
+<option>:   /LN      run as adapter 1 for bridge
+            /SES:<n> set number of sessions (default 32)
+            /NAM:<n> set max number of names (default 17)
+            /LP:<n>  set base port address (default 300)
+            /LI:<n>  set IRQ number (default 3)
+            /H       see help screen
+
