@@ -11,7 +11,7 @@ Close up view of my card.
 
 The default base I/O is `300h` and `IRQ 3`. If you need to change these because of conflicts with other devices, you need to use the `Plusdiag` utility.
 
-The `Plusdiag` utility will required the initial I/O and IRQ to be at their defaults before configuration. If they are not please do the following steps. You'll need an 16-bit ISA slot for this initial configuration.
+`Plusdiag` may be able to detect the card even at non-default settings and in a 8-bit slot. However if you have issues, set the initial I/O and IRQ to be their defaults and put card in a 16-bit ISA slot.
 
 1. Power off your PC and short the default jumper on both pins.
 
